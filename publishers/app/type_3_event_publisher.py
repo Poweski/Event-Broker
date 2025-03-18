@@ -1,5 +1,10 @@
 import time
 import random
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../common'))
+
 import logging
 from common.broker import MessageBroker
 from publishers.domain.type_3_event import Type3Event
