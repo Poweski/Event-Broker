@@ -1,19 +1,14 @@
 import time
 import random
-import sys
-import os
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../common'))
-
 import logging
-from common.broker import MessageBroker
 from publishers.domain.type_2_event import Type2Event
+from common.broker import MessageBroker
 
 class Publisher:
     def __init__(self, broker, event_class):
         self.broker = broker
         self.event_class = event_class
-        self.queue_name = event_class.__name__
+        self.queue_name = event_class.__name__.lower()
         self.broker.declare_queue(self.queue_name)
 
     def start(self):

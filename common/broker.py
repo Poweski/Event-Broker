@@ -1,4 +1,6 @@
-import pika, json, logging
+import pika
+import json
+import logging
 
 class Event:
     def __init__(self, data):
