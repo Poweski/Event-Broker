@@ -1,0 +1,78 @@
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  publisher1_1:
+    build:       
+      context: ./publishers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_1_event_publisher.py"]
+
+  publisher1_2:
+    build:       
+      context: ./publishers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_1_event_publisher.py"]
+
+  publisher1_3:
+    build:       
+      context: ./publishers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_1_event_publisher.py"]
+
+  publisher2:
+    build:       
+      context: ./publishers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_2_event_publisher.py"]
+
+  publisher3:
+    build:       
+      context: ./publishers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_3_event_publisher.py"]
+
+  consumer1_1:
+    build:
+      context: ./consumers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_1_event_consumer.py"]
+
+  consumer1_2:
+    build:
+      context: ./consumers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_1_event_consumer.py"]
+
+  consumer2:
+    build:
+      context: ./consumers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_2_event_consumer.py"]
+
+  consumer3:
+    build:
+      context: ./consumers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_3_event_consumer.py"]
+
+  consumer4:
+    build:
+      context: ./consumers/app
+    depends_on:
+      - rabbitmq
+    command: ["python", "type_4_event_consumer.py"]
+      
